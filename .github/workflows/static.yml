@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - run: echo "Deploying To Dev"
+  
    deploy-test:
     needs: deploy-dev
     environment: test
@@ -39,6 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - run: echo "Deploying To Prod"
+      
  # Single deploy job since we're just deploying      
   deploy:
     environment:
