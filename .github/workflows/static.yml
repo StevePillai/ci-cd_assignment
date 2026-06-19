@@ -21,7 +21,7 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
-jobs:
+job:
   deploy-dev:
     environment: dev
     runs-on: ubuntu-latest
