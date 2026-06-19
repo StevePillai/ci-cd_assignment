@@ -1,0 +1,56 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+      - test
+      - prod
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+
+  dev:
+    if: github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: DEV Stage
+        run: echo "Hello Dev"
+
+  test:
+    if: github.ref == 'refs/heads/test'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: TEST Stage
+        run: echo "Hello Test"
+
+  prod:
+    if: github.ref == 'refs/heads/prod'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PROD Stage
+        run: echo "Hello Prod"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy
+        uses: actions/deploy-pages@v4
